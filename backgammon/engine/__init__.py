@@ -16,6 +16,7 @@ from .board import (
     apply_step,
     format_move,
     generate_moves,
+    single_steps,
     to_absolute,
 )
 from .game import Game, opening_roll, play_game, roll_dice
@@ -25,6 +26,6 @@ __all__ = [
     "ALL_ROLLS", "BAR", "BLACK", "NUM_CHECKERS", "OFF", "PLAYER_NAMES",
     "START_POSITION", "WHITE", "GameResult", "State", "afterstates",
     "apply_move", "apply_step", "format_move", "generate_moves",
-    "to_absolute", "Game", "opening_roll", "play_game", "roll_dice",
+    "single_steps", "to_absolute", "Game", "opening_roll", "play_game", "roll_dice",
     "render_board",
 ]

@@ -356,3 +356,25 @@ def format_move(move: Move, player: int = WHITE, absolute: bool = False) -> str:
             t = "off" if dst == OFF else str(dst)
         parts.append(f"{s}/{t}")
     return " ".join(parts)
+
+
+def single_steps(state: State, die: int) -> list[Step]:
+    """All single checker steps playable with one die, ignoring the
+    "use as many dice as possible" rules (used for step-by-step input)."""
+    me = state.pos[state.turn]
+    op = state.pos[1 - state.turn]
+    if me[BAR]:
+        dst = 25 - die
+        return [(BAR, dst)] if op[25 - dst] < 2 else []
+    steps = []
+    all_home = not any(me[7:26])
+    for src in range(24, 0, -1):
+        if not me[src]:
+            continue
+        dst = src - die
+        if dst >= 1:
+            if op[25 - dst] < 2:
+                steps.append((src, dst))
+        elif all_home and (dst == 0 or not any(me[src + 1:7])):
+            steps.append((src, OFF))
+    return steps
