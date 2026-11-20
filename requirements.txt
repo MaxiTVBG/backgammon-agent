@@ -1,0 +1,9 @@
+# PyTorch: on Windows with an NVIDIA GPU install it first with the CUDA wheel
+# (see README), e.g.  pip install torch --index-url https://download.pytorch.org/whl/cu124
+torch>=2.2
+numpy>=1.26
+pygame>=2.5
+matplotlib>=3.8
+tqdm>=4.66
+tensorboard>=2.15
+pytest>=8.0
