@@ -11,6 +11,8 @@
 * красива визуализация на pygame (всичко е рисувано програмно);
 * документация за защитата: [`docs/algorithm.md`](docs/algorithm.md).
 
+![Графичният интерфейс: TD срещу TD+Expectimax](docs/img/gui.png)
+
 ![Крива на обучението](docs/img/training_curve.png)
 
 ---
@@ -293,4 +295,16 @@ python -m pytest
 
 ## 9. Резултати
 
-Виж [`docs/algorithm.md`](docs/algorithm.md#9-резултати) — там са графиките и таблиците.
+Моделът в репото (`checkpoints/td_final.pt`) е обучен с 150 000 партии срещу себе си
+(80 скрити неврона, λ = 0,7, α 0,1 → 0,01) за 44 минути на 4-ядрен облачен контейнер.
+Дневникът на оценките е в `checkpoints/td_final_log.csv`.
+
+| Агент | Противник | Партии | Победи | Точки/партия |
+|---|---|---:|---:|---:|
+| TD (1-ply) | Random | 1000 | 99,8% | +2,55 |
+| TD (1-ply) | Heuristic | 2000 | 70,8% | +0,51 |
+| TD + Expectimax (2-ply) | Heuristic | 400 | 76,0% | +0,66 |
+| TD + Expectimax (2-ply) | TD (1-ply) | 400 | 55,2% | +0,11 |
+| Heuristic | Random | 1000 | 99,7% | +2,64 |
+
+Подробности, графики и изводи: [`docs/algorithm.md`](docs/algorithm.md#9-резултати).
